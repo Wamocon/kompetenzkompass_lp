@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Kompetenzkompass – Besetzungsentscheidungen mit Begründung</title>
+  <meta name="description" content="Kompetenzkompass strukturiert Anforderungen, bewertet Kandidatenprofile und liefert nachvollziehbare Matchings mit gezielten Interviewleitfäden. Passung mit Nachweis.">
+  <meta name="theme-color" content="#294f3f">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Source+Sans+3:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <style type="text/tailwindcss">
+    @theme {
+      --color-bg: #f5f0e7;
+      --color-bg-alt: #e9dfcf;
+      --color-surface: #ffffff;
+      --color-border: rgba(18, 38, 32, .08);
+      --color-border-hover: rgba(41, 79, 63, .2);
+      --color-accent: #294f3f;
+      --color-accent-dim: #1d3a2f;
+      --color-rust: #9a3412;
+      --color-text-main: #122620;
+      --color-muted: #5a6858;
+      --color-faint: #8a8478;
+      --font-sans: 'Source Sans 3', system-ui, sans-serif;
+      --font-display: 'DM Serif Display', serif;
+    }
+    body { font-family: var(--font-sans); background: var(--color-bg); color: var(--color-text-main); }
+  </style>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="overflow-x-hidden antialiased leading-relaxed">
+
+  <!-- Gradient Orbs -->
+  <div class="gradient-orbs" aria-hidden="true">
+    <div class="orb orb--1"></div>
+    <div class="orb orb--2"></div>
+    <div class="orb orb--3"></div>
+  </div>
+
+  <!-- Ticker Bar -->
+  <div class="fixed top-0 left-0 right-0 z-[60] overflow-hidden" style="height:48px;background:#0e1f19;border-bottom:1px solid rgba(41,79,63,.25);">
+    <div style="display:flex;align-items:center;height:100%;white-space:nowrap;animation:ticker-scroll 28s linear infinite;">
+      <span class="ticker-item">Kompetenzkompass &ndash; Kompetenzen einfach finden</span>
+      <span class="ticker-item">Kompetenzkompass &ndash; Kompetenzen einfach finden</span>
+      <span class="ticker-item">Kompetenzkompass &ndash; Kompetenzen einfach finden</span>
+      <span class="ticker-item">Kompetenzkompass &ndash; Kompetenzen einfach finden</span>
+      <span class="ticker-item">Kompetenzkompass &ndash; Kompetenzen einfach finden</span>
+      <span class="ticker-item">Kompetenzkompass &ndash; Kompetenzen einfach finden</span>
+      <span class="ticker-item">Kompetenzkompass &ndash; Kompetenzen einfach finden</span>
+      <span class="ticker-item">Kompetenzkompass &ndash; Kompetenzen einfach finden</span>
+      <span class="ticker-item">Kompetenzkompass &ndash; Kompetenzen einfach finden</span>
+      <span class="ticker-item">Kompetenzkompass &ndash; Kompetenzen einfach finden</span>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-[48px] left-0 right-0 z-50 h-16 flex items-center transition-all duration-400" id="nav">
+    <div class="w-full max-w-[1100px] mx-auto px-5 md:px-10 flex items-center justify-between">
+      <a href="#" class="hover:opacity-80 transition-opacity flex items-center gap-2" style="text-decoration:none;">
+        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kompetenzkompass" style="width:32px;height:32px;flex-shrink:0;">
+          <circle cx="60" cy="60" r="46" fill="none" stroke="#122620" stroke-width="1.5" opacity=".32"/>
+          <circle cx="60" cy="60" r="27" fill="none" stroke="#122620" stroke-width="1" opacity=".28"/>
+          <line x1="60" y1="14" x2="60" y2="106" stroke="#122620" stroke-width="1" opacity=".28"/>
+          <line x1="14" y1="60" x2="106" y2="60" stroke="#122620" stroke-width="1" opacity=".28"/>
+          <line x1="27.5" y1="27.5" x2="92.5" y2="92.5" stroke="#122620" stroke-width="0.8" opacity=".22"/>
+          <line x1="92.5" y1="27.5" x2="27.5" y2="92.5" stroke="#122620" stroke-width="0.8" opacity=".22"/>
+          <polygon points="60,12 52,60 68,60" fill="#9a3412"/>
+          <polygon points="60,95 52,60 68,60" fill="#122620"/>
+          <circle cx="60" cy="60" r="5.5" fill="#294f3f"/>
+          <circle cx="60" cy="60" r="2.5" fill="#e9dfcf"/>
+        </svg>
+        <span style="font-size:1.25rem;font-weight:900;letter-spacing:-0.03em;color:#294f3f;font-family:var(--font-display);">KOMPETENZKOMPASS</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-3">
+        <button id="langToggle" aria-label="Toggle language">EN</button>
+        <div class="nav-links-pill">
+          <a href="#problem" class="nav-link" data-nav-section="problem" data-de="Problem" data-en="Problem">Problem</a>
+          <a href="#workflow" class="nav-link" data-nav-section="workflow" data-de="Workflow" data-en="Workflow">Workflow</a>
+          <a href="#funktionen" class="nav-link" data-nav-section="funktionen" data-de="Funktionen" data-en="Features">Funktionen</a>
+          <a href="#pricing" class="nav-link" data-nav-section="pricing" data-de="Preise" data-en="Pricing">Preise</a>
+          <a href="#faq" class="nav-link" data-nav-section="faq" data-de="FAQ" data-en="FAQ">FAQ</a>
+        </div>
+        <a href="https://www.kompetenzkompass.app/" target="_blank" rel="noopener noreferrer"
+          style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:#294f3f;color:#fff;font-size:.78rem;font-weight:700;border-radius:10px;text-decoration:none;transition:all .2s ease;box-shadow:0 2px 12px rgba(41,79,63,.3);"
+          onmouseover="this.style.background='#1d3a2f';this.style.transform='translateY(-1px)'"
+          onmouseout="this.style.background='#294f3f';this.style.transform='translateY(0)'">
+          <span data-de="Zur Anwendung" data-en="Open app">Zur Anwendung</span>
+        </a>
+      </div>
+
+      <button class="nav-hamburger md:hidden" id="navHamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" aria-hidden="true">
+    <button style="position:absolute;top:18px;right:18px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.2rem;" onclick="closeMobileMenu()">&times;</button>
+    <div class="mm-brand" style="display:flex;align-items:center;gap:10px;justify-content:center;">
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" style="width:28px;height:28px;">
+        <circle cx="60" cy="60" r="46" fill="none" stroke="#f5f0e7" stroke-width="1.5" opacity=".22"/>
+        <circle cx="60" cy="60" r="27" fill="none" stroke="#f5f0e7" stroke-width="1" opacity=".18"/>
+        <line x1="60" y1="14" x2="60" y2="106" stroke="#f5f0e7" stroke-width="1" opacity=".18"/>
+        <line x1="14" y1="60" x2="106" y2="60" stroke="#f5f0e7" stroke-width="1" opacity=".18"/>
+        <polygon points="60,12 52,60 68,60" fill="#9a3412"/>
+        <polygon points="60,95 52,60 68,60" fill="#f5f0e7"/>
+        <circle cx="60" cy="60" r="5.5" fill="#294f3f"/>
+        <circle cx="60" cy="60" r="2.5" fill="#122620"/>
+      </svg>
+      <span>KOMPETENZKOMPASS</span>
+    </div>
+    <div class="mm-grid">
+      <a href="#problem" class="mm-link" onclick="closeMobileMenu()" data-de="Problem" data-en="Problem">Problem</a>
+      <a href="#workflow" class="mm-link" onclick="closeMobileMenu()" data-de="Workflow" data-en="Workflow">Workflow</a>
+      <a href="#funktionen" class="mm-link" onclick="closeMobileMenu()" data-de="Funktionen" data-en="Features">Funktionen</a>
+      <a href="#pricing" class="mm-link" onclick="closeMobileMenu()" data-de="Preise" data-en="Pricing">Preise</a>
+      <a href="#faq" class="mm-link" onclick="closeMobileMenu()" data-de="FAQ" data-en="FAQ">FAQ</a>
+      <a href="https://www.kompetenzkompass.app/" target="_blank" rel="noopener noreferrer" class="mm-link" onclick="closeMobileMenu()" data-de="Zur Anwendung" data-en="Open app">Zur Anwendung</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- HERO -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="relative flex items-center justify-center overflow-hidden pt-[180px] pb-[130px]" id="hero">
+    <canvas id="heroParticles" class="absolute inset-0 z-[1]"></canvas>
+    <div class="absolute inset-0 z-0" style="background:radial-gradient(ellipse 70% 55% at 50% 40%,rgba(41,79,63,.08)0%,transparent 65%),radial-gradient(ellipse 50% 60% at 20% 80%,rgba(154,52,18,.05)0%,transparent 50%),radial-gradient(ellipse 45% 50% at 80% 25%,rgba(41,79,63,.04)0%,transparent 50%)"></div>
+
+    <div class="relative z-10 text-center max-w-[980px] px-5 w-full">
+      <p class="reveal text-sm font-semibold tracking-widest uppercase mb-4" style="color:#9a3412;">Kompetenzkompass</p>
+      <h1 class="reveal text-4xl md:text-7xl font-extrabold leading-[1.05] tracking-tight mb-7" style="font-family:var(--font-display);"
+        data-de-html="Die passende Besetzung.<br><span class='gradient-text'>Klar begründet.</span>"
+        data-en-html="Evidence-based<br><span class='gradient-text'>Matching.</span>">
+        Die passende Besetzung.<br><span class="gradient-text">Klar begründet.</span>
+      </h1>
+      <p class="reveal text-lg md:text-xl max-w-[700px] mx-auto leading-relaxed mb-10" style="color:#5a6858;"
+        data-de="Kompetenzkompass schafft eine klare Grundlage für Besetzungsentscheidungen: Anforderungen, Kandidatenprofile und Interviewfragen sind in einem durchgängigen Ablauf verbunden."
+        data-en="Structure requirements, assess candidates, identify gaps – and build the interview on that foundation. With reasoning for every step.">
+        Kompetenzkompass schafft eine klare Grundlage für Besetzungsentscheidungen: Anforderungen, Kandidatenprofile und Interviewfragen sind in einem durchgängigen Ablauf verbunden.
+      </p>
+
+      <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="https://www.kompetenzkompass.app/" target="_blank" rel="noopener noreferrer"
+          style="display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:#294f3f;color:#fff;font-size:.95rem;font-weight:700;border-radius:12px;text-decoration:none;transition:all .25s ease;box-shadow:0 4px 24px rgba(41,79,63,.35);"
+          onmouseover="this.style.background='#1d3a2f';this.style.transform='translateY(-2px)'"
+          onmouseout="this.style.background='#294f3f';this.style.transform='translateY(0)'">
+          <span data-de="Zur Anwendung" data-en="Open app">Zur Anwendung</span>
+        </a>
+        <a href="#workflow"
+          style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:rgba(18,38,32,.05);color:#122620;font-size:.95rem;font-weight:600;border-radius:12px;text-decoration:none;border:1px solid rgba(18,38,32,.12);transition:all .25s ease;"
+          onmouseover="this.style.background='rgba(18,38,32,.09)';this.style.borderColor='rgba(18,38,32,.20)'"
+          onmouseout="this.style.background='rgba(18,38,32,.05)';this.style.borderColor='rgba(18,38,32,.12)'">
+          <span data-de="So funktioniert's" data-en="See how it works">So funktioniert's</span>
+        </a>
+      </div>
+
+      <!-- Mock App Preview -->
+      <div class="reveal mt-16 mx-auto max-w-[820px] rounded-2xl overflow-hidden border border-[rgba(18,38,32,.12)] shadow-[0_20px_70px_rgba(18,38,32,.18)]">
+        <div class="flex items-center gap-2 px-4 py-3 bg-white border-b border-[rgba(18,38,32,.08)]">
+          <span class="w-3 h-3 rounded-full bg-red-400"></span>
+          <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+          <span class="w-3 h-3 rounded-full bg-green-400"></span>
+          <span class="ml-3 text-xs font-mono" style="color:#8a8478;">www.kompetenzkompass.app/matching</span>
+        </div>
+        <div class="h-[320px] bg-[linear-gradient(160deg,#122620,#1d3a2f,#294f3f)] flex items-center justify-center">
+          <div class="text-center text-white/80">
+            <div class="text-5xl mb-3">🧭</div>
+            <p class="text-sm font-semibold" data-de="Scorecard-Ansicht" data-en="Scorecard View">Scorecard-Ansicht</p>
+            <p class="text-xs opacity-60 mt-1">Anforderungsanalyse · Profilabgleich · Interview-Leitfaden</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trust hint -->
+      <p class="reveal mt-6 text-xs font-medium tracking-wide" style="color:#8a8478;"
+        data-de="Jede Empfehlung bleibt prüfbar · Human-in-the-Loop"
+        data-en="Every recommendation stays reviewable · Human-in-the-Loop">
+        Jede Empfehlung bleibt prüfbar · Human-in-the-Loop
+      </p>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 h-[120px] z-20" style="background:linear-gradient(to bottom, transparent, #f5f0e7);"></div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- PROBLEM -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="relative section-dark" id="problem" style="padding:7rem 0 6rem;margin-top:-2px;">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
+      <h2 class="reveal text-4xl md:text-6xl font-black leading-[1.05] tracking-tight mb-6" style="color:#f0f0f2;font-family:var(--font-display);"
+        data-de-html="Warum gute Stellen<br><span style='color:#9a3412;'>falsch besetzt werden</span>"
+        data-en-html="Why good roles<br><span style='color:#9a3412;'>get filled wrong</span>">
+        Warum gute Stellen<br><span style="color:#9a3412;">falsch besetzt werden</span>
+      </h2>
+      <p class="reveal text-lg max-w-[700px] leading-relaxed mb-16" style="color:#8a8478;"
+        data-de="Zu viele Ausschreibungen, zu uneinheitliche Profile – und am Ende trotzdem keine klare Grundlage für die Entscheidung. Das muss nicht so sein."
+        data-en="Too many job postings, too inconsistent profiles – and still no clear basis for the decision. It doesn't have to be that way.">
+        Zu viele Ausschreibungen, zu uneinheitliche Profile – und am Ende trotzdem keine klare Grundlage für die Entscheidung. Das muss nicht so sein.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="reveal text-center p-8 rounded-2xl" style="background:rgba(154,52,18,.07);border:1px solid rgba(154,52,18,.25);">
+          <span class="block text-4xl mb-3">📄</span>
+          <span class="block text-base font-semibold mb-1" style="color:#f0f0f2;"
+            data-de="Uneinheitliche Anforderungen"
+            data-en="Inconsistent requirements">Uneinheitliche Anforderungen</span>
+          <span class="block text-sm" style="color:#8a8478;"
+            data-de="Keine zwei Ausschreibungen sind gleich strukturiert."
+            data-en="No two job postings are structured the same.">Keine zwei Ausschreibungen sind gleich strukturiert.</span>
+        </div>
+        <div class="reveal text-center p-8 rounded-2xl" style="background:rgba(154,52,18,.07);border:1px solid rgba(154,52,18,.25);">
+          <span class="block text-4xl mb-3">🧩</span>
+          <span class="block text-base font-semibold mb-1" style="color:#f0f0f2;"
+            data-de="Verborgene Kompetenzen"
+            data-en="Hidden competencies">Verborgene Kompetenzen</span>
+          <span class="block text-sm" style="color:#8a8478;"
+            data-de="Was jemand wirklich kann, steht selten im Lebenslauf."
+            data-en="What someone can really do is rarely in the CV.">Was jemand wirklich kann, steht selten im Lebenslauf.</span>
+        </div>
+        <div class="reveal text-center p-8 rounded-2xl" style="background:rgba(154,52,18,.07);border:1px solid rgba(154,52,18,.25);">
+          <span class="block text-4xl mb-3">🎯</span>
+          <span class="block text-base font-semibold mb-1" style="color:#f0f0f2;"
+            data-de="Interviews am Thema vorbei"
+            data-en="Interviews missing the point">Interviews am Thema vorbei</span>
+          <span class="block text-sm" style="color:#8a8478;"
+            data-de="Ohne Abgleich prüft das Interview die falschen Punkte."
+            data-en="Without comparison, the interview checks the wrong things.">Ohne Abgleich prüft das Interview die falschen Punkte.</span>
+        </div>
+        <div class="reveal text-center p-8 rounded-2xl" style="background:rgba(154,52,18,.07);border:1px solid rgba(154,52,18,.25);">
+          <span class="block text-4xl mb-3">⚖️</span>
+          <span class="block text-base font-semibold mb-1" style="color:#f0f0f2;"
+            data-de="Entscheidungen nach Gefühl"
+            data-en="Gut-feeling decisions">Entscheidungen nach Gefühl</span>
+          <span class="block text-sm" style="color:#8a8478;"
+            data-de="Wer nicht begründen kann, entscheidet nach Bauchgefühl."
+            data-en="Without a basis, decisions are based on gut feeling.">Wer nicht begründen kann, entscheidet nach Bauchgefühl.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- WORKFLOW (Roadmap Timeline) -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="py-24 md:py-32 section-dark" id="workflow" style="background:#0e1f19;">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
+      <div class="text-center mb-16">
+        <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5" style="color:#f0f0f2;font-family:var(--font-display);"
+          data-de="In vier Schritten zur begründeten Besetzung"
+          data-en="Four steps to evidence-based staffing">In vier Schritten zur begründeten Besetzung</h2>
+        <p class="reveal text-lg max-w-[700px] mx-auto leading-relaxed" style="color:#8a8478;"
+          data-de="Vom Anforderungstext bis zum Interview-Leitfaden – durchgängig strukturiert."
+          data-en="From requirements text to interview guide – structured throughout.">Vom Anforderungstext bis zum Interview-Leitfaden – durchgängig strukturiert.</p>
+      </div>
+
+      <div class="rm" id="roadmapTimeline">
+        <div class="rm__line" id="rmLine">
+          <svg preserveAspectRatio="none" id="rmSvg">
+            <defs>
+              <linearGradient id="rmGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#294f3f"/>
+                <stop offset="100%" stop-color="#9a3412"/>
+              </linearGradient>
+            </defs>
+            <path class="rm__line-bg" id="rmPathBg"></path>
+            <path class="rm__line-progress" id="rmPathFill"></path>
+          </svg>
+          <div class="rm__line-glow" id="rmGlow"></div>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="rm__row" data-rm-progress="0.12"><div class="rm__cell"><div class="rm__card rm__card--l">
+          <span class="rm__label" data-de="Schritt 1" data-en="Step 1">Schritt 1</span>
+          <h3 class="rm__title" data-de="Anforderungen klären" data-en="Define requirements">Anforderungen klären</h3>
+          <p class="rm__desc" data-de="Aus Projekttexten und Ausschreibungen entsteht ein klares, vergleichbares Anforderungsprofil." data-en="Project texts and job postings are turned into a clear, comparable requirements profile.">Aus Projekttexten und Ausschreibungen entsteht ein klares, vergleichbares Anforderungsprofil.</p>
+        </div></div><div class="rm__center"><div class="rm__branch rm__branch--l"></div><div class="rm__dot"></div></div><div class="rm__cell rm__cell--hide"></div></div>
+
+        <!-- Step 2 -->
+        <div class="rm__row" data-rm-progress="0.36"><div class="rm__cell rm__cell--hide"></div><div class="rm__center"><div class="rm__branch rm__branch--r"></div><div class="rm__dot"></div></div><div class="rm__cell"><div class="rm__card rm__card--r">
+          <span class="rm__label" data-de="Schritt 2" data-en="Step 2">Schritt 2</span>
+          <h3 class="rm__title" data-de="Profile aufbereiten" data-en="Prepare profiles">Profile aufbereiten</h3>
+          <p class="rm__desc" data-de="Lebensläufe und Bewerbungsunterlagen werden einheitlich strukturiert und vergleichbar gemacht." data-en="CVs and application documents are uniformly structured and made comparable.">Lebensläufe und Bewerbungsunterlagen werden einheitlich strukturiert und vergleichbar gemacht.</p>
+        </div></div></div>
+
+        <!-- Step 3 -->
+        <div class="rm__row" data-rm-progress="0.60"><div class="rm__cell"><div class="rm__card rm__card--l">
+          <span class="rm__label" data-de="Schritt 3" data-en="Step 3">Schritt 3</span>
+          <h3 class="rm__title" data-de="Passung bewerten" data-en="Assess fit">Passung bewerten</h3>
+          <p class="rm__desc" data-de="Scorecards zeigen Stärken, Lücken und die Begründung dahinter – nachvollziehbar für alle Beteiligten." data-en="Scorecards show strengths, gaps, and the reasoning behind them – transparent for everyone involved.">Scorecards zeigen Stärken, Lücken und die Begründung dahinter – nachvollziehbar für alle Beteiligten.</p>
+        </div></div><div class="rm__center"><div class="rm__branch rm__branch--l"></div><div class="rm__dot"></div></div><div class="rm__cell rm__cell--hide"></div></div>
+
+        <!-- Step 4 -->
+        <div class="rm__row" data-rm-progress="0.84"><div class="rm__cell rm__cell--hide"></div><div class="rm__center"><div class="rm__branch rm__branch--r"></div><div class="rm__dot"></div></div><div class="rm__cell"><div class="rm__card rm__card--r">
+          <span class="rm__label" data-de="Schritt 4" data-en="Step 4">Schritt 4</span>
+          <h3 class="rm__title" data-de="Gezielt interviewen" data-en="Interview with purpose">Gezielt interviewen</h3>
+          <p class="rm__desc" data-de="Der Leitfaden setzt genau da an, wo der Abgleich Fragen offen gelassen hat – kein Standardkatalog." data-en="The guide picks up exactly where the comparison left questions open – no standard catalog.">Der Leitfaden setzt genau da an, wo der Abgleich Fragen offen gelassen hat – kein Standardkatalog.</p>
+        </div></div></div>
+
+        <div class="rm__end">
+          <div class="rm__end-marker" id="rmEndDot">
+            <div class="rm__end-ring">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <span class="rm__end-label" data-de="Begründete Besetzungsentscheidung" data-en="Justified staffing decision">Begründete Besetzungsentscheidung</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- FEATURES -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="py-24 md:py-32 text-center section-alt section-glow" id="funktionen">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
+      <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded mb-4" style="color:#294f3f;background:rgba(41,79,63,.06);"
+        data-de="Was Kompetenzkompass kann" data-en="What Kompetenzkompass does">Was Kompetenzkompass kann</span>
+      <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5" style="font-family:var(--font-display);"
+        data-de="Vom Anforderungsprofil bis zum Interviewleitfaden"
+        data-en="From requirements profile to interview guide">Vom Anforderungsprofil bis zum Interviewleitfaden</h2>
+      <p class="reveal text-lg max-w-[620px] mx-auto leading-relaxed" style="color:var(--color-muted);"
+        data-de="Vier Funktionen, nahtlos verzahnt – von der ersten Ausschreibung bis zur Interviewvorbereitung."
+        data-en="Four functions, seamlessly connected – from the first job posting to interview preparation.">Vier Funktionen, nahtlos verzahnt – von der ersten Ausschreibung bis zur Interviewvorbereitung.</p>
+
+      <div class="mt-14 grid grid-cols-1 md:grid-cols-2 gap-5 text-left">
+        <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover">
+          <h3 class="font-semibold text-lg mb-1" data-de="Anforderungsanalyse" data-en="Requirements Analysis">Anforderungsanalyse</h3>
+          <p class="text-sm" style="color:var(--color-muted);" data-de="Aus unstrukturierten Texten werden klare, vergleichbare Anforderungskriterien. Einmal aufgesetzt, immer einheitlich." data-en="Unstructured texts become clear, comparable requirement criteria. Set up once, always consistent.">Aus unstrukturierten Texten werden klare, vergleichbare Anforderungskriterien. Einmal aufgesetzt, immer einheitlich.</p>
+        </div>
+        <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover">
+          <h3 class="font-semibold text-lg mb-1" data-de="Profilabgleich" data-en="Profile Matching">Profilabgleich</h3>
+          <p class="text-sm" style="color:var(--color-muted);" data-de="Jeder Lebenslauf wird auf gleicher Basis bewertet. Kein Raten, kein Vergleichen von Äpfeln mit Birnen." data-en="Every CV is assessed on the same basis. No guessing, no comparing apples to oranges.">Jeder Lebenslauf wird auf gleicher Basis bewertet. Kein Raten, kein Vergleichen von Äpfeln mit Birnen.</p>
+        </div>
+        <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover">
+          <h3 class="font-semibold text-lg mb-1" data-de="Matching-Scorecard" data-en="Matching Scorecard">Matching-Scorecard</h3>
+          <p class="text-sm" style="color:var(--color-muted);" data-de="Stärken, Lücken, Begründungen – alles auf einen Blick. Kein pauschaler Score, den niemand nachvollziehen kann." data-en="Strengths, gaps, reasoning – all at a glance. No blanket score that nobody can trace.">Stärken, Lücken, Begründungen – alles auf einen Blick. Kein pauschaler Score, den niemand nachvollziehen kann.</p>
+        </div>
+        <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover">
+          <h3 class="font-semibold text-lg mb-1" data-de="Interview-Leitfaden" data-en="Interview Guide">Interview-Leitfaden</h3>
+          <p class="text-sm" style="color:var(--color-muted);" data-de="Die Fragen ergeben sich aus den offenen Punkten im Abgleich – maßgeschneidert statt generisch." data-en="Questions arise directly from the open points in the comparison – tailored rather than generic.">Die Fragen ergeben sich aus den offenen Punkten im Abgleich – maßgeschneidert statt generisch.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- TRUST / VERTRAUEN -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="py-24 md:py-32" id="vertrauen">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
+      <div class="text-center mb-14">
+        <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded mb-4" style="color:#9a3412;background:rgba(154,52,18,.06);"
+          data-de="Transparenz" data-en="Transparency">Transparenz</span>
+        <h2 class="reveal text-3xl md:text-5xl font-bold tracking-tight" style="font-family:var(--font-display);"
+          data-de="Klar. Erklärbar. Prüfbar."
+          data-en="Clear. Explainable. Auditable.">Klar. Erklärbar. Prüfbar.</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="reveal trust-card">
+          <div class="text-2xl mb-3">🤝</div>
+          <h3 class="font-semibold text-base mb-1" data-de="Human-in-the-Loop" data-en="Human-in-the-Loop">Human-in-the-Loop</h3>
+          <p class="text-sm" style="color:var(--color-muted);" data-de="Kein automatisches Urteil ohne Ihr Zutun. Jede Empfehlung ist ein Vorschlag – die Entscheidung liegt bei Ihnen." data-en="No automatic judgment without your input. Every recommendation is a proposal – the decision is yours.">Kein automatisches Urteil ohne Ihr Zutun. Jede Empfehlung ist ein Vorschlag – die Entscheidung liegt bei Ihnen.</p>
+        </div>
+        <div class="reveal trust-card">
+          <div class="text-2xl mb-3">📊</div>
+          <h3 class="font-semibold text-base mb-1" data-de="Jede Bewertung mit Begründung" data-en="Every score with reasoning">Jede Bewertung mit Begründung</h3>
+          <p class="text-sm" style="color:var(--color-muted);" data-de="Kein pauschaler Score. Jede Teilbewertung hat eine nachvollziehbare Begründung, die sich hinterfragen lässt." data-en="No blanket score. Every sub-score has a traceable reason that can be questioned.">Kein pauschaler Score. Jede Teilbewertung hat eine nachvollziehbare Begründung, die sich hinterfragen lässt.</p>
+        </div>
+        <div class="reveal trust-card">
+          <div class="text-2xl mb-3">🔍</div>
+          <h3 class="font-semibold text-base mb-1" data-de="Daten und Einschätzung getrennt" data-en="Data and assessment separated">Daten und Einschätzung getrennt</h3>
+          <p class="text-sm" style="color:var(--color-muted);" data-de="Was ist nachgewiesen, was ist Interpretation? Kompetenzkompass hält das sauber auseinander." data-en="What is proven, what is interpretation? Kompetenzkompass keeps these clearly separated.">Was ist nachgewiesen, was ist Interpretation? Kompetenzkompass hält das sauber auseinander.</p>
+        </div>
+        <div class="reveal trust-card">
+          <div class="text-2xl mb-3">📋</div>
+          <h3 class="font-semibold text-base mb-1" data-de="Lückenlos nachvollziehbar" data-en="Fully traceable">Lückenlos nachvollziehbar</h3>
+          <p class="text-sm" style="color:var(--color-muted);" data-de="Vom Eingangstext bis zur Empfehlung ist jeder Schritt dokumentiert – für interne Prüfung und Rückfragen." data-en="From input text to recommendation, every step is documented – for internal review and follow-up questions.">Vom Eingangstext bis zur Empfehlung ist jeder Schritt dokumentiert – für interne Prüfung und Rückfragen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- USE CASES / EINSATZSZENARIEN -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="py-24 md:py-32 section-alt" id="szenarien">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
+      <div class="text-center mb-14">
+        <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded mb-4" style="color:#294f3f;background:rgba(41,79,63,.06);"
+          data-de="Für wen es sich lohnt" data-en="Who benefits most">Für wen es sich lohnt</span>
+        <h2 class="reveal text-3xl md:text-5xl font-bold tracking-tight" style="font-family:var(--font-display);"
+          data-de="Für jeden, der Stellen fundiert besetzen will"
+          data-en="For everyone who wants to staff roles with confidence">Für jeden, der Stellen fundiert besetzen will</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover text-center">
+          <div class="text-3xl mb-4">🏢</div>
+          <h3 class="font-semibold text-lg mb-2" data-de="Personalberatung" data-en="Executive Search">Personalberatung</h3>
+          <p class="text-sm" style="color:var(--color-muted);" data-de="Begründete Kandidatenvorschläge in kürzerer Zeit – mit Argumenten, die Kunden überzeugen." data-en="Justified candidate proposals in less time – with arguments that convince clients.">Begründete Kandidatenvorschläge in kürzerer Zeit – mit Argumenten, die Kunden überzeugen.</p>
+        </div>
+        <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover text-center">
+          <div class="text-3xl mb-4">👥</div>
+          <h3 class="font-semibold text-lg mb-2" data-de="Interne Recruiting-Teams" data-en="Internal Recruiting Teams">Interne Recruiting-Teams</h3>
+          <p class="text-sm" style="color:var(--color-muted);" data-de="Einheitliche Bewertungsgrundlage für HR und Fachbereich – weniger Abstimmungsrunden, mehr Klarheit." data-en="Uniform assessment basis for HR and departments – fewer coordination rounds, more clarity.">Einheitliche Bewertungsgrundlage für HR und Fachbereich – weniger Abstimmungsrunden, mehr Klarheit.</p>
+        </div>
+        <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover text-center">
+          <div class="text-3xl mb-4">🔬</div>
+          <h3 class="font-semibold text-lg mb-2" data-de="Fachbereiche" data-en="Departments">Fachbereiche</h3>
+          <p class="text-sm" style="color:var(--color-muted);" data-de="Schluss mit Lebensläufe-Lesen ohne Ergebnis – klare Aussage zur tatsächlichen Passung, mit konkreten Belegen." data-en="No more reading CVs without results – clear statement on actual fit, with concrete evidence.">Schluss mit Lebensläufe-Lesen ohne Ergebnis – klare Aussage zur tatsächlichen Passung, mit konkreten Belegen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- PRICING -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="py-24 md:py-32" id="pricing">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
+      <div class="text-center mb-12">
+        <h2 class="reveal text-3xl md:text-5xl font-bold tracking-tight" style="font-family:var(--font-display);"
+          data-de="Einfache Preise, klare Stufen"
+          data-en="Simple pricing, clear tiers">Einfache Preise, klare Stufen</h2>
+        <p class="reveal text-base mt-3" style="color:var(--color-muted);"
+          data-de="Kostenlos einsteigen – und nur dann erweitern, wenn Sie mehr brauchen."
+          data-en="Start for free – and only upgrade when you need more.">Kostenlos einsteigen – und nur dann erweitern, wenn Sie mehr brauchen.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+        <!-- Free -->
+        <div class="pricing-card">
+          <div class="text-xs font-semibold uppercase tracking-widest mb-2" style="color:#8a8478;">Free</div>
+          <div class="text-4xl font-extrabold mb-1">0 €<span class="text-sm" style="color:#8a8478">/Monat</span></div>
+          <p class="text-sm mb-4" style="color:#5a6858;" data-de="Zum Einstieg. Ohne Kreditkarte." data-en="To get started. No credit card.">Zum Einstieg. Ohne Kreditkarte.</p>
+          <div class="pricing-feature">• <span data-de="1 Nutzer" data-en="1 user">1 Nutzer</span></div>
+          <div class="pricing-feature">• <span data-de="2 Projekte" data-en="2 projects">2 Projekte</span></div>
+          <div class="pricing-feature">• <span data-de="Basis-Matching" data-en="Basic matching">Basis-Matching</span></div>
+          <div class="pricing-feature">• <span data-de="Manueller Upload" data-en="Manual upload">Manueller Upload</span></div>
+        </div>
+
+        <!-- Starter -->
+        <div class="pricing-card pricing-card--disabled">
+          <span class="pricing-unavailable" data-de="Derzeit nicht verfügbar" data-en="Currently unavailable">Derzeit nicht verfügbar</span>
+          <div class="text-xs font-semibold uppercase tracking-widest mb-2" style="color:#8a8478;">Starter</div>
+          <div class="text-4xl font-extrabold mb-1">29 €<span class="text-sm" style="color:#8a8478">/Monat</span></div>
+          <p class="text-sm mb-4" style="color:#5a6858;" data-de="Für Berater und kleine Teams." data-en="For consultants and small teams.">Für Berater und kleine Teams.</p>
+          <div class="pricing-feature">• <span data-de="Bis zu 5 Nutzer" data-en="Up to 5 users">Bis zu 5 Nutzer</span></div>
+          <div class="pricing-feature">• <span data-de="10 Projekte" data-en="10 projects">10 Projekte</span></div>
+          <div class="pricing-feature">• <span data-de="Interview-Analyse" data-en="Interview analysis">Interview-Analyse</span></div>
+          <div class="pricing-feature">• <span data-de="Export-Funktion" data-en="Export function">Export-Funktion</span></div>
+        </div>
+
+        <!-- Professional -->
+        <div class="pricing-card pricing-card--disabled">
+          <span class="pricing-unavailable" data-de="Derzeit nicht verfügbar" data-en="Currently unavailable">Derzeit nicht verfügbar</span>
+          <div class="text-xs font-semibold uppercase tracking-widest mb-2" style="color:#294f3f;">Professional</div>
+          <div class="text-4xl font-extrabold mb-1">99 €<span class="text-sm" style="color:#8a8478">/Monat</span></div>
+          <p class="text-sm mb-4" style="color:#5a6858;" data-de="Für aktive Recruiting-Teams im Tagesgeschäft." data-en="For active recruiting teams in daily operations.">Für aktive Recruiting-Teams im Tagesgeschäft.</p>
+          <div class="pricing-feature">• <span data-de="Bis zu 25 Nutzer" data-en="Up to 25 users">Bis zu 25 Nutzer</span></div>
+          <div class="pricing-feature">• <span data-de="50 Projekte" data-en="50 projects">50 Projekte</span></div>
+          <div class="pricing-feature">• <span data-de="API-Zugang" data-en="API access">API-Zugang</span></div>
+          <div class="pricing-feature">• <span data-de="Prioritätssupport" data-en="Priority support">Prioritätssupport</span></div>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="pricing-card pricing-card--disabled">
+          <span class="pricing-unavailable" data-de="Derzeit nicht verfügbar" data-en="Currently unavailable">Derzeit nicht verfügbar</span>
+          <div class="text-xs font-semibold uppercase tracking-widest mb-2" style="color:#8a8478;">Enterprise</div>
+          <div class="text-4xl font-extrabold mb-1" data-de="Individuell" data-en="Custom">Individuell</div>
+          <p class="text-sm mb-4" style="color:#5a6858;" data-de="Für Unternehmen mit eigenen Anforderungen." data-en="For companies with their own requirements.">Für Unternehmen mit eigenen Anforderungen.</p>
+          <div class="pricing-feature">• <span data-de="Unbegrenzte Nutzer" data-en="Unlimited users">Unbegrenzte Nutzer</span></div>
+          <div class="pricing-feature">• <span data-de="Unbegrenzte Projekte" data-en="Unlimited projects">Unbegrenzte Projekte</span></div>
+          <div class="pricing-feature">• <span data-de="SSO Integration" data-en="SSO integration">SSO Integration</span></div>
+          <div class="pricing-feature">• <span data-de="Custom Integrationen" data-en="Custom integrations">Custom Integrationen</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- FAQ -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="py-24 md:py-32" id="faq">
+    <div class="max-w-[760px] mx-auto px-5 md:px-10">
+      <div class="text-center mb-12">
+        <h2 class="reveal text-3xl md:text-5xl font-bold tracking-tight" style="font-family:var(--font-display);"
+          data-de="Fragen &amp; Antworten"
+          data-en="Questions &amp; Answers">Fragen &amp; Antworten</h2>
+      </div>
+      <div id="faqList">
+        <div class="faq-item">
+          <button class="faq-question flex items-center gap-4 w-full text-left py-5 px-2 cursor-pointer bg-transparent border-0" style="font-family:inherit;">
+            <span style="font-size:.7rem;font-weight:700;letter-spacing:.09em;color:#294f3f;opacity:.8;min-width:26px;padding-top:3px;flex-shrink:0;">01</span>
+            <span class="flex-1 font-semibold text-base" data-de="Trifft Kompetenzkompass automatische Zu- oder Absagen?" data-en="Does Kompetenzkompass make automated accept/reject decisions?">Trifft Kompetenzkompass automatische Zu- oder Absagen?</span>
+            <span class="faq-question__icon relative w-5 h-5 shrink-0"></span>
+          </button>
+          <div class="faq-answer"><div class="pb-5 px-2 pl-12 text-sm leading-relaxed" style="color:var(--color-muted);" data-de="Nein. Kompetenzkompass unterstützt Ihre Entscheidung – trifft sie aber nicht. Jede Empfehlung ist ein Vorschlag, den Sie prüfen und freigeben." data-en="No. Kompetenzkompass supports your decision – but doesn't make it. Every recommendation is a proposal for you to review and approve.">Nein. Kompetenzkompass unterstützt Ihre Entscheidung – trifft sie aber nicht. Jede Empfehlung ist ein Vorschlag, den Sie prüfen und freigeben.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question flex items-center gap-4 w-full text-left py-5 px-2 cursor-pointer bg-transparent border-0" style="font-family:inherit;">
+            <span style="font-size:.7rem;font-weight:700;letter-spacing:.09em;color:#294f3f;opacity:.8;min-width:26px;padding-top:3px;flex-shrink:0;">02</span>
+            <span class="flex-1 font-semibold text-base" data-de="Sind alle Funktionen bereits vollständig produktiv?" data-en="Are all features fully production-ready?">Sind alle Funktionen bereits vollständig produktiv?</span>
+            <span class="faq-question__icon relative w-5 h-5 shrink-0"></span>
+          </button>
+          <div class="faq-answer"><div class="pb-5 px-2 pl-12 text-sm leading-relaxed" style="color:var(--color-muted);" data-de="Einzelne Bereiche sind noch als Demo-Ergebnisse gekennzeichnet. Was produktiv ist und was Demo-Stand hat, ist in der Oberfläche jederzeit klar ersichtlich." data-en="Individual areas are still marked as demo results. What is in production and what is demo status is always clearly visible in the interface.">Einzelne Bereiche sind noch als Demo-Ergebnisse gekennzeichnet. Was produktiv ist und was Demo-Stand hat, ist in der Oberfläche jederzeit klar ersichtlich.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question flex items-center gap-4 w-full text-left py-5 px-2 cursor-pointer bg-transparent border-0" style="font-family:inherit;">
+            <span style="font-size:.7rem;font-weight:700;letter-spacing:.09em;color:#294f3f;opacity:.8;min-width:26px;padding-top:3px;flex-shrink:0;">03</span>
+            <span class="flex-1 font-semibold text-base" data-de="Kann ich mehrere Kandidaten gleichzeitig auswerten?" data-en="Can I evaluate multiple candidates at the same time?">Kann ich mehrere Kandidaten gleichzeitig auswerten?</span>
+            <span class="faq-question__icon relative w-5 h-5 shrink-0"></span>
+          </button>
+          <div class="faq-answer"><div class="pb-5 px-2 pl-12 text-sm leading-relaxed" style="color:var(--color-muted);" data-de="Ja. Einzelauswertung und Gruppenvergleich sind beide möglich – übersichtlich in einer gemeinsamen Scorecard-Ansicht." data-en="Yes. Individual evaluation and group comparison are both possible – clearly arranged in a shared scorecard view.">Ja. Einzelauswertung und Gruppenvergleich sind beide möglich – übersichtlich in einer gemeinsamen Scorecard-Ansicht.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question flex items-center gap-4 w-full text-left py-5 px-2 cursor-pointer bg-transparent border-0" style="font-family:inherit;">
+            <span style="font-size:.7rem;font-weight:700;letter-spacing:.09em;color:#294f3f;opacity:.8;min-width:26px;padding-top:3px;flex-shrink:0;">04</span>
+            <span class="flex-1 font-semibold text-base" data-de="Welche Unterlagen werden verarbeitet?" data-en="What documents are processed?">Welche Unterlagen werden verarbeitet?</span>
+            <span class="faq-question__icon relative w-5 h-5 shrink-0"></span>
+          </button>
+          <div class="faq-answer"><div class="pb-5 px-2 pl-12 text-sm leading-relaxed" style="color:var(--color-muted);" data-de="Projekttexte, Ausschreibungen und Bewerbungsunterlagen. Alle Daten werden DSGVO-konform verarbeitet – keine Weitergabe an Dritte, keine Nutzung für Modelltraining." data-en="Project texts, job postings, and application documents. All data is processed in GDPR compliance – no sharing with third parties, no use for model training.">Projekttexte, Ausschreibungen und Bewerbungsunterlagen. Alle Daten werden DSGVO-konform verarbeitet – keine Weitergabe an Dritte, keine Nutzung für Modelltraining.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question flex items-center gap-4 w-full text-left py-5 px-2 cursor-pointer bg-transparent border-0" style="font-family:inherit;">
+            <span style="font-size:.7rem;font-weight:700;letter-spacing:.09em;color:#294f3f;opacity:.8;min-width:26px;padding-top:3px;flex-shrink:0;">05</span>
+            <span class="flex-1 font-semibold text-base" data-de="Kann ich Kompetenzkompass kostenlos testen?" data-en="Can I try Kompetenzkompass for free?">Kann ich Kompetenzkompass kostenlos testen?</span>
+            <span class="faq-question__icon relative w-5 h-5 shrink-0"></span>
+          </button>
+          <div class="faq-answer"><div class="pb-5 px-2 pl-12 text-sm leading-relaxed" style="color:var(--color-muted);" data-de="Ja. Der Free-Tarif ist sofort zugänglich – ohne Kreditkarte, ohne Zeitlimit. Ein Nutzer, zwei Projekte, zum Reinschnuppern." data-en="Yes. The Free plan is immediately accessible – no credit card, no time limit. One user, two projects, to get a feel for it.">Ja. Der Free-Tarif ist sofort zugänglich – ohne Kreditkarte, ohne Zeitlimit. Ein Nutzer, zwei Projekte, zum Reinschnuppern.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- CTA -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="section-dark py-24 md:py-32" id="cta" style="background:#0e1f19;">
+    <div class="max-w-[720px] mx-auto px-5 md:px-10 text-center">
+      <h2 class="reveal text-3xl md:text-5xl font-black leading-[1.05] tracking-tight mb-6" style="color:#f0f0f2;font-family:var(--font-display);"
+        data-de-html="Bessere Besetzungen –<br><span style='color:#9a3412;'>weil Sie sie begründen können.</span>"
+        data-en-html="Better staffing decisions –<br><span style='color:#9a3412;'>because you can justify them.</span>">Bessere Besetzungen –<br><span style="color:#9a3412;">weil Sie sie begründen können.</span></h2>
+      <p class="reveal text-lg leading-relaxed mb-10" style="color:#8a8478;"
+        data-de="Kompetenzkompass macht Besetzungsentscheidungen nachvollziehbar – für Sie, Ihr Team und Ihre Auftraggeber. Starten Sie jetzt."
+        data-en="Kompetenzkompass makes staffing decisions transparent – for you, your team, and your clients. Start now.">Kompetenzkompass macht Besetzungsentscheidungen nachvollziehbar – für Sie, Ihr Team und Ihre Auftraggeber. Starten Sie jetzt.</p>
+      <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="https://www.kompetenzkompass.app/" target="_blank" rel="noopener noreferrer"
+          style="display:inline-flex;align-items:center;gap:8px;padding:16px 36px;background:#294f3f;color:#fff;font-size:1rem;font-weight:700;border-radius:14px;text-decoration:none;transition:all .25s ease;box-shadow:0 4px 24px rgba(41,79,63,.35);"
+          onmouseover="this.style.background='#1d3a2f';this.style.transform='translateY(-2px)'"
+          onmouseout="this.style.background='#294f3f';this.style.transform='translateY(0)'">
+          <span data-de="Zur Anwendung" data-en="Open app">Zur Anwendung</span>
+        </a>
+        <a href="#funktionen"
+          style="display:inline-flex;align-items:center;gap:8px;padding:16px 28px;background:rgba(255,255,255,.08);color:#f0f0f2;font-size:1rem;font-weight:600;border-radius:14px;text-decoration:none;border:1px solid rgba(255,255,255,.15);transition:all .25s ease;"
+          onmouseover="this.style.background='rgba(255,255,255,.14)';this.style.borderColor='rgba(255,255,255,.25)'"
+          onmouseout="this.style.background='rgba(255,255,255,.08)';this.style.borderColor='rgba(255,255,255,.15)'">
+          <span data-de="Mehr erfahren" data-en="Learn more">Mehr erfahren</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- FOOTER -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <footer style="background:#0a1a14;padding:3rem 0 2rem;border-top:1px solid rgba(255,255,255,.06);">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
+      <div class="flex flex-col md:flex-row items-center md:items-start justify-between gap-8 mb-8">
+        <div class="text-center md:text-left">
+          <div style="display:flex;align-items:center;gap:10px;justify-content:center;">
+            <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" style="width:36px;height:36px;flex-shrink:0;">
+              <circle cx="60" cy="60" r="46" fill="none" stroke="#f5f0e7" stroke-width="1.5" opacity=".22"/>
+              <circle cx="60" cy="60" r="27" fill="none" stroke="#f5f0e7" stroke-width="1" opacity=".18"/>
+              <line x1="60" y1="14" x2="60" y2="106" stroke="#f5f0e7" stroke-width="1" opacity=".18"/>
+              <line x1="14" y1="60" x2="106" y2="60" stroke="#f5f0e7" stroke-width="1" opacity=".18"/>
+              <line x1="27.5" y1="27.5" x2="92.5" y2="92.5" stroke="#f5f0e7" stroke-width="0.8" opacity=".13"/>
+              <line x1="92.5" y1="27.5" x2="27.5" y2="92.5" stroke="#f5f0e7" stroke-width="0.8" opacity=".13"/>
+              <polygon points="60,12 52,60 68,60" fill="#9a3412"/>
+              <polygon points="60,95 52,60 68,60" fill="#e9dfcf"/>
+              <circle cx="60" cy="60" r="5.5" fill="#294f3f"/>
+              <circle cx="60" cy="60" r="2.5" fill="#122620"/>
+            </svg>
+            <span style="font-size:1.5rem;font-weight:900;letter-spacing:-.04em;color:#9a3412;font-family:var(--font-display);">KOMPETENZKOMPASS</span>
+          </div>
+          <p style="color:#8a8478;font-size:.8rem;margin-top:.5rem;max-width:260px;line-height:1.6;"
+            data-de="Begründete Besetzungsentscheidungen für Recruiting und Projektbusiness."
+            data-en="Justified staffing decisions for recruiting and project business.">Begründete Besetzungsentscheidungen für Recruiting und Projektbusiness.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-x-12 gap-y-2 text-sm" style="color:#8a8478;">
+          <a href="#problem" style="color:#8a8478;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#9a3412'" onmouseout="this.style.color='#8a8478'" data-de="Problem" data-en="Problem">Problem</a>
+          <a href="#funktionen" style="color:#8a8478;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#9a3412'" onmouseout="this.style.color='#8a8478'" data-de="Funktionen" data-en="Features">Funktionen</a>
+          <a href="#workflow" style="color:#8a8478;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#9a3412'" onmouseout="this.style.color='#8a8478'" data-de="Workflow" data-en="Workflow">Workflow</a>
+          <a href="#pricing" style="color:#8a8478;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#9a3412'" onmouseout="this.style.color='#8a8478'" data-de="Preise" data-en="Pricing">Preise</a>
+          <a href="#faq" style="color:#8a8478;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#9a3412'" onmouseout="this.style.color='#8a8478'">FAQ</a>
+          <a href="#vertrauen" style="color:#8a8478;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#9a3412'" onmouseout="this.style.color='#8a8478'" data-de="Vertrauen" data-en="Trust">Vertrauen</a>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,.05);padding-top:1.2rem;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:16px;">
+        <a href="impressum.html" style="color:#8a8478;font-size:.72rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#9a3412'" onmouseout="this.style.color='#8a8478'" data-de="Impressum" data-en="Legal Notice">Impressum</a>
+        <span style="color:#8a8478;font-size:.72rem;">·</span>
+        <a href="datenschutz.html" style="color:#8a8478;font-size:.72rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#9a3412'" onmouseout="this.style.color='#8a8478'" data-de="Datenschutz" data-en="Privacy Policy">Datenschutz</a>
+        <span style="color:#8a8478;font-size:.72rem;">·</span>
+        <a href="agb.html" style="color:#8a8478;font-size:.72rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#9a3412'" onmouseout="this.style.color='#8a8478'" data-de="AGB" data-en="Terms">AGB</a>
+        <span style="color:#8a8478;font-size:.72rem;">·</span>
+        <p style="color:#5a6858;font-size:.72rem;margin:0;">© 2026 Kompetenzkompass. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Nach oben">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:20px;height:20px;"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <!-- Cookie Banner -->
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-banner__inner">
+      <div style="font-weight:700;font-size:.95rem;margin-bottom:6px;" data-de="Cookies" data-en="Cookies">Cookies</div>
+      <div style="font-size:.8rem;color:var(--color-muted);line-height:1.6;margin-bottom:16px;"
+        data-de="Wir verwenden Cookies, um die Nutzung der Website zu verbessern."
+        data-en="We use cookies to improve website experience.">Wir verwenden Cookies, um die Nutzung der Website zu verbessern.</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-action="accept" data-de="Akzeptieren" data-en="Accept">Akzeptieren</button>
+        <button class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-action="reject" data-de="Ablehnen" data-en="Reject">Ablehnen</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

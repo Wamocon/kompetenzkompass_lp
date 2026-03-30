@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AGB – Kompetenzkompass</title>
+  <meta name="description" content="Allgemeine Geschäftsbedingungen der WAMOCON GmbH für Kompetenzkompass.">
+  <meta name="theme-color" content="#294f3f">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Source+Sans+3:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <style type="text/tailwindcss">
+    @theme {
+      --color-bg: #f5f0e7;
+      --color-surface: #ffffff;
+      --color-border: rgba(18, 38, 32, .08);
+      --color-accent: #294f3f;
+      --color-rust: #9a3412;
+      --color-text-main: #122620;
+      --color-muted: #5a6858;
+      --font-sans: 'Source Sans 3', system-ui, sans-serif;
+      --font-display: 'DM Serif Display', serif;
+    }
+    body { font-family: var(--font-sans); background: var(--color-bg); color: var(--color-text-main); }
+  </style>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="overflow-x-hidden antialiased leading-relaxed">
+  <nav class="fixed top-0 left-0 right-0 z-50 h-16 flex items-center nav-scrolled" style="background:rgba(245,240,231,.92);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(41,79,63,.08);">
+    <div class="w-full max-w-[1100px] mx-auto px-5 md:px-10 flex items-center justify-between">
+      <a href="index.html" class="hover:opacity-80 transition-opacity flex items-center gap-2" style="text-decoration:none;">
+        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kompetenzkompass" style="width:32px;height:32px;flex-shrink:0;">
+          <circle cx="60" cy="60" r="46" fill="none" stroke="#122620" stroke-width="1.5" opacity=".32"/>
+          <circle cx="60" cy="60" r="27" fill="none" stroke="#122620" stroke-width="1" opacity=".28"/>
+          <line x1="60" y1="14" x2="60" y2="106" stroke="#122620" stroke-width="1" opacity=".28"/>
+          <line x1="14" y1="60" x2="106" y2="60" stroke="#122620" stroke-width="1" opacity=".28"/>
+          <polygon points="60,12 52,60 68,60" fill="#9a3412"/>
+          <polygon points="60,95 52,60 68,60" fill="#122620"/>
+          <circle cx="60" cy="60" r="5.5" fill="#294f3f"/>
+          <circle cx="60" cy="60" r="2.5" fill="#e9dfcf"/>
+        </svg>
+        <span style="font-size:1.25rem;font-weight:900;letter-spacing:-0.03em;color:#294f3f;font-family:var(--font-display);">KOMPETENZKOMPASS</span>
+      </a>
+      <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:#294f3f;color:#fff;font-size:.78rem;font-weight:700;border-radius:10px;text-decoration:none;transition:all .2s ease;">
+        ← Zurück
+      </a>
+    </div>
+  </nav>
+
+  <main class="pt-28 pb-20 legal-main">
+    <div class="max-w-[980px] mx-auto px-5 md:px-10">
+      <div class="legal-header mb-6">
+        <span class="legal-kicker">Rechtliches</span>
+        <h1 class="text-3xl md:text-5xl font-bold mb-2" style="font-family:var(--font-display);">Allgemeine Geschäftsbedingungen</h1>
+        <p class="text-sm" style="color:#8a8478;">Stand: März 2026</p>
+      </div>
+      <div class="bg-surface rounded-3xl border border-border p-8 md:p-12 shadow-sm legal-card">
+
+        <article class="prose-article">
+          <h3>§ 1 Geltungsbereich</h3>
+          <p>(1) Diese Allgemeinen Geschäftsbedingungen (nachfolgend "AGB") der WAMOCON GmbH, Mergenthalerallee 79 - 81, 65760 Eschborn (nachfolgend "Anbieter"), gelten für alle Verträge über die Nutzung der Software-as-a-Service-Plattform Kompetenzkompass (nachfolgend "Plattform"), die über die Website kompetenzkompass.app bereitgestellt wird.</p>
+          <p>(2) Die Plattform richtet sich an Unternehmen, Personaldienstleister, Projektverantwortliche und sonstige gewerbliche Projektbeteiligte (nachfolgend "Auftraggeber") sowie deren Benutzer (nachfolgend "Nutzer"). Es handelt sich um ein B2B-Angebot. Verbraucher im Sinne des § 13 BGB sind nicht Zielgruppe dieses Angebots.</p>
+          <p>(3) Abweichende, entgegenstehende oder ergänzende AGB des Auftraggebers werden nicht Vertragsbestandteil, es sei denn, der Anbieter stimmt deren Geltung ausdrücklich schriftlich zu.</p>
+          <p>(4) Die Plattform wird laufend weiterentwickelt. Soweit einzelne Funktionen im Rahmen einer Pilot-, Test- oder Einführungsphase bereitgestellt werden, behält sich der Anbieter vor, den Funktionsumfang in diesen Bereichen zu ändern, zu erweitern oder einzuschränken.</p>
+
+          <h3>§ 2 Vertragsschluss</h3>
+          <p>(1) Die Darstellung der Plattform und ihrer Funktionen auf der Website stellt kein verbindliches Angebot im Sinne des § 145 BGB dar, sondern eine Aufforderung zur Abgabe eines Angebots (invitatio ad offerendum).</p>
+          <p>(2) Der Auftraggeber gibt ein verbindliches Angebot zum Abschluss eines Nutzungsvertrages ab, indem er den Registrierungsprozess auf der Plattform abschließt oder einen bereitgestellten Einladungs- beziehungsweise Freischaltungsprozess annimmt und diese AGB akzeptiert.</p>
+          <p>(3) Der Vertrag kommt zustande, wenn der Anbieter das Angebot des Auftraggebers durch Freischaltung des Zugangs annimmt oder der Zugang technisch bereitgestellt wird.</p>
+
+          <h3>§ 3 Leistungsbeschreibung</h3>
+          <p>(1) Der Anbieter stellt dem Auftraggeber die Plattform Kompetenzkompass als Software-as-a-Service (SaaS) über das Internet zur Verfügung. Die Plattform ist eine digitale Lösung für Kompetenzanalyse, Skill-Matching, Teamkoordination und Projektdokumentation.</p>
+          <p>(2) Die Plattform umfasst insbesondere folgende Funktionsbereiche:</p>
+          <ul>
+            <li>Erfassung und Verwaltung von Projektanforderungen und Rollen</li>
+            <li>Erstellung und Verwaltung von Ausschreibungen mit Skill-Anforderungen</li>
+            <li>Analyse von Kandidatenprofilen mit KI-gestützter Extraktion</li>
+            <li>Einzel- und Mehrfach-Matching mit erklärbaren Scores</li>
+            <li>Kompetenzrad-Visualisierung und Anforderungsabgleich</li>
+            <li>KI-generierte Interviewleitfäden</li>
+            <li>Rollenbasiertes Berechtigungssystem und Mandantenfähigkeit</li>
+          </ul>
+
+          <h3>§ 4 Nutzungsrechte</h3>
+          <p>(1) Der Anbieter räumt dem Auftraggeber für die Dauer des Vertragsverhältnisses ein einfaches, nicht übertragbares und nicht unterlizenzierbares Recht ein, die Plattform im Rahmen dieser AGB vertragsgemäß zu nutzen.</p>
+          <p>(2) Alle Rechte an der Plattform, einschließlich der zugrundeliegenden Software, Datenbanken, Algorithmen und Benutzeroberflächengestaltung, verbleiben beim Anbieter.</p>
+
+          <h3>§ 5 Pflichten des Auftraggebers und der Nutzer</h3>
+          <p>(1) Der Auftraggeber ist verpflichtet, Zugangsdaten geheim zu halten und vor dem Zugriff unbefugter Dritter zu schützen.</p>
+          <p>(2) Die Nutzer verpflichten sich, die Plattform ausschließlich für zulässige geschäftliche Zwecke zu nutzen, keine rechtswidrigen Inhalte hochzuladen und keine Sicherheitsmechanismen der Plattform zu umgehen.</p>
+
+          <h3>§ 6 Vergütung und Zahlungsbedingungen</h3>
+          <p>(1) Die Vergütung richtet sich nach der jeweils individuell vereinbarten Leistungs- und Preisstruktur.</p>
+          <p>(2) Alle Preise verstehen sich zuzüglich der jeweils geltenden gesetzlichen Umsatzsteuer.</p>
+
+          <h3>§ 7 Gewährleistung und Mängelbeseitigung</h3>
+          <p>(1) Der Anbieter gewährleistet, dass die Plattform im Wesentlichen den beschriebenen Funktionen entspricht.</p>
+          <p>(2) Mängel hat der Auftraggeber unverzüglich nach Entdeckung unter möglichst genauer Beschreibung schriftlich oder per E-Mail an info@wamocon.com zu melden.</p>
+
+          <h3>§ 8 Haftung</h3>
+          <p>(1) Der Anbieter haftet unbeschränkt für Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit sowie für vorsätzliche oder grob fahrlässige Pflichtverletzungen.</p>
+          <p>(2) KI-generierte Ausgaben stellen Empfehlungen dar und ersetzen keine fachliche, rechtliche oder technische Prüfung durch den Nutzer.</p>
+
+          <h3>§ 9 Datenschutz</h3>
+          <p>(1) Der Anbieter verarbeitet personenbezogene Daten im Einklang mit der DSGVO, dem BDSG und weiteren anwendbaren Datenschutzvorschriften.</p>
+          <p>(2) Einzelheiten zur Datenverarbeitung ergeben sich aus der Datenschutzerklärung.</p>
+
+          <h3>§ 10 Vertraulichkeit</h3>
+          <p>(1) Die Parteien verpflichten sich, alle im Rahmen des Vertragsverhältnisses erlangten vertraulichen Informationen vertraulich zu behandeln.</p>
+
+          <h3>§ 11 Vertragslaufzeit und Kündigung</h3>
+          <p>(1) Der Vertrag wird auf unbestimmte Zeit geschlossen, sofern nicht individuell eine feste Laufzeit vereinbart wird.</p>
+          <p>(2) Das Recht zur außerordentlichen Kündigung aus wichtigem Grund bleibt unberührt.</p>
+
+          <h3>§ 12 Änderungen dieser AGB</h3>
+          <p>(1) Der Anbieter ist berechtigt, diese AGB mit Wirkung für die Zukunft zu ändern, sofern dies für den Auftraggeber zumutbar ist.</p>
+
+          <h3>§ 13 Schlussbestimmungen</h3>
+          <p>(1) Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts (CISG).</p>
+          <p>(2) Sofern der Auftraggeber Kaufmann ist, ist ausschließlicher Gerichtsstand Frankfurt am Main.</p>
+
+          <h3>Kontakt</h3>
+          <p>WAMOCON GmbH<br>Mergenthalerallee 79 - 81<br>65760 Eschborn<br>Telefon: +49 6196 5838311<br>E-Mail: info@wamocon.com</p>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer style="background:#0a1a14;padding:2rem 0;border-top:1px solid rgba(255,255,255,.06);">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:16px;">
+        <a href="impressum.html" style="color:#8a8478;font-size:.75rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#9a3412'" onmouseout="this.style.color='#8a8478'">Impressum</a>
+        <span style="color:#8a8478;font-size:.72rem;">·</span>
+        <a href="datenschutz.html" style="color:#8a8478;font-size:.75rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#9a3412'" onmouseout="this.style.color='#8a8478'">Datenschutz</a>
+        <span style="color:#8a8478;font-size:.72rem;">·</span>
+        <a href="agb.html" style="color:#9a3412;font-size:.75rem;font-weight:600;text-decoration:none;">AGB</a>
+        <span style="color:#8a8478;font-size:.72rem;">·</span>
+        <p style="color:#5a6858;font-size:.72rem;margin:0;">© 2026 WAMOCON GmbH. Alle Rechte vorbehalten.</p>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    .legal-main {
+      background:
+        radial-gradient(1200px 320px at 50% -30px, rgba(41,79,63,.1), transparent 60%),
+        radial-gradient(700px 260px at 8% 0%, rgba(154,52,18,.08), transparent 60%);
+    }
+    .legal-header {
+      padding: 1rem 1.25rem;
+    }
+    .legal-kicker {
+      display: inline-block;
+      font-size: .66rem;
+      font-weight: 800;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: #9a3412;
+      background: rgba(154,52,18,.09);
+      border: 1px solid rgba(154,52,18,.22);
+      padding: 4px 9px;
+      border-radius: 999px;
+      margin-bottom: .7rem;
+    }
+    .legal-card {
+      box-shadow: 0 20px 80px rgba(18,38,32,.08);
+      position: relative;
+      overflow: hidden;
+    }
+    .legal-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #294f3f, #9a3412);
+    }
+    .prose-article {
+      max-width: 78ch;
+      margin: 0 auto;
+    }
+    .prose-article h3 {
+      font-size: 1.16rem;
+      font-weight: 700;
+      color: #17372d;
+      margin-top: 2.1rem;
+      margin-bottom: .7rem;
+      padding: .48rem .7rem .48rem .85rem;
+      border-left: 3px solid #9a3412;
+      background: linear-gradient(90deg, rgba(41,79,63,.05), rgba(41,79,63,0));
+      border-radius: 10px;
+      font-family: var(--font-display);
+      letter-spacing: .01em;
+    }
+    .prose-article h3:first-child { margin-top: 0; }
+    .prose-article p {
+      font-size: 1rem;
+      line-height: 1.82;
+      color: #455447;
+      margin-bottom: .9rem;
+    }
+    .prose-article ul {
+      padding-left: 1.4rem;
+      margin-bottom: 1rem;
+    }
+    .prose-article li {
+      font-size: 1rem;
+      line-height: 1.78;
+      color: #455447;
+      list-style-type: disc;
+      padding-left: .15rem;
+      margin-bottom: .2rem;
+    }
+    @media (max-width: 640px) {
+      .prose-article p,
+      .prose-article li {
+        font-size: .96rem;
+      }
+      .prose-article h3 {
+        font-size: 1.06rem;
+      }
+    }
+  </style>
+</body>
+</html>
